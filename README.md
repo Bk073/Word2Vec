@@ -53,20 +53,6 @@
     * takes care on dimensions of the matrix
     *  why bias is not present ?
 
-Reference:
-
-https://arxiv.org/pdf/1301.3781.pdf
-
-http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/
-
-https://www.analyticsvidhya.com/blog/2021/06/part-5-step-by-step-guide-to-master-nlp-text-vectorization-approaches/
-
-https://github.com/chao-ji/tf-word2vec
-
-
-https://github.com/mchablani/deep-learning/blob/master/embeddings/Skip-Gram_word2vec.ipynb
-
-
 
 ## Skip-gram model
 
@@ -101,3 +87,23 @@ https://github.com/mchablani/deep-learning/blob/master/embeddings/Skip-Gram_word
         * heuristic sub sampling technique is used in paper
 
 
+### Results:
+
+Sampled 500 vocaublary words
+
+![image](https://user-images.githubusercontent.com/21074651/150744196-93d18a56-8b1f-430c-ae5c-93fe6489aa8a.png)
+
+![image](https://user-images.githubusercontent.com/21074651/150744526-3b096b53-c054-46b1-a2d6-3a8d59b41899.png)
+
+## Reference:
+
+- [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf)
+- [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/abs/1310.4546)
+- A Neural Probabilistic Language Model
+
+
+
+## TODO:
+
+*   Error analysis
+      * Currently the results are not good.   
