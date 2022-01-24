@@ -9,19 +9,16 @@
 *   Input layer
       
       * N previous words are encoded using **1-of-V coding**, where V is vocabulary size
-*   Projection layer(Embedding layer)
+*   Projection layer
 
       * The input layer is then projected to a projection layer P that has dimension N x D, N inputs are active at any given time
 *   Hidden layer
 
-      * NNLM architecture becomes complex for computation between the projection and the hidden layer, as values in the projection layer are dense
+      * NNLM architecture becomes complex for computation between the projection and the hidden layer(non-linear), as values in the projection layer are dense
       *  If N = 10, the size of the projection layer (P) might be 500 to 2000, while the hidden layer size H is typically 500 to 1000 units.
       Thus complexity = N x D + N x D x H + H x V
 
 *   Output layer
-
-    *
-    
 
 ## New Log-linear Models:
 
@@ -61,25 +58,26 @@
 *   Predict neighboring context given a word
 *   Objective: maximize the average log probability:
     
-    * (![image](https://user-images.githubusercontent.com/21074651/150743118-22a958f7-19fa-4b5d-93cb-3dd6aad4cd13.png)
-)
+    * ![image](https://user-images.githubusercontent.com/21074651/150743118-22a958f7-19fa-4b5d-93cb-3dd6aad4cd13.png)
+
 
     *  c is the size of the training context
 
 * Skip-gram defines the probability using softmax function:
+    *   to calculate this softmax over large vocabulary is ineffective
 
-(![image](https://user-images.githubusercontent.com/21074651/150743150-1a6aa323-123b-42f1-a7e9-35089b8d8383.png)
-)
+![image](https://user-images.githubusercontent.com/21074651/150743150-1a6aa323-123b-42f1-a7e9-35089b8d8383.png)
+
 
     *  W is the number of words in vocabulary
     *  Output layer gives the probability of words in the entire vocabulary
     *    Computing cost of probability over entire vocab can be inefficient, so other approximation methods are developed
     i. Hierarchical Softmax
-        * replace softmax with sigmoid
-        * binary tree
+        * computationally efficient approximation of the full softmax
+        * replace the standard softmax with sigmoid in standard Skip-gram model
     ii. Negative Sampling
-        *  understand negative sampling objective
-        * the task is to distinguish the target word w_o from draws from the noise distribution using logistic regression(Hinge loss, binary classification)
+        *  the objective of using negative sampling is that a good model should be able to differentiate data from noise
+        * the task is to distinguish the target word w_o from the noise distribution using logistic regression(Hinge loss, binary classification)
         * Paper: noise distribution is a free parameter
     iii. Subsampling of frequent words
         *   most frequent words(a, the, an, etc) provides less information and their representation won't change significantly after training on several million examples
